@@ -1,39 +1,50 @@
-
-
-
-
 * {
   box-sizing: border-box;
   font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
+
 body {
   margin: 0;
-  padding: 0; /* Pastikan padding 0 untuk background penuh viewport */
-  background: linear-gradient(135deg, #000000 0%, #78797c 100%); /* Background gradient untuk body */
+  padding: 0;
+  background: linear-gradient(135deg, #000000 0%, #78797c 100%);
   min-height: 100vh;
   display: flex;
-  justify-content: center; /* Menengahkan secara horizontal */
-  align-items: center; /* Menengahkan secara vertikal */
+  justify-content: center;
+  align-items: center;
+  -webkit-text-size-adjust: 100%;
 }
 
 /* Styles untuk halaman utama (index.php) */
 .welcome-container {
   max-width: 500px;
-  width: 90%; /* Responsif untuk mobile */
-  margin: auto; /* Menengahkan container secara horizontal dan vertikal di dalam flexbox body */
-  
-  background-image: url('../img/downloadbg.jpeg'); /* Background gambar untuk welcome-container */
+  width: 90%;
+  margin: auto;
+  background-image: url('../img/downloadbg.jpeg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  
+  background-attachment: fixed; /* Membuat background tidak scroll */
   padding: 40px;
   border-radius: 16px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.1);
   text-align: center;
+  color: #d1d1d1;
+  position: relative;
+  z-index: 1;
+}
 
-  color: #d1d1d1; /* Warna teks di welcome-container */
+/* Overlay untuk meningkatkan keterbacaan teks */
+.welcome-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 16px;
+  z-index: -1;
 }
 
 h1 {
@@ -56,15 +67,17 @@ p {
   cursor: pointer;
   font-size: 16px;
   font-weight: 600;
-  background: linear-gradient(135deg, #708090, #8d9baa); /* Gradient abu-abu untuk tombol Start */
+  background: linear-gradient(135deg, #708090, #8d9baa);
   color: white;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(112, 128, 144, 0.3); /* Menyesuaikan box-shadow */
+  box-shadow: 0 4px 15px rgba(112, 128, 144, 0.3);
   text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+  position: relative; /* Memastikan tombol di atas overlay */
 }
 
 .start-btn:hover {
-  background: linear-gradient(135deg, #5a6a7a, #708090); /* Sedikit gelap saat hover */
+  background: linear-gradient(135deg, #5a6a7a, #708090);
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(112, 128, 144, 0.4);
 }
@@ -72,48 +85,62 @@ p {
 .features {
   text-align: left;
   margin: 30px 0;
+  position: relative; /* Memastikan konten di atas overlay */
 }
 
 .feature-item {
   display: flex;
   align-items: center;
   margin-bottom: 15px;
-  color: #d1d1d1; /* Warna teks item fitur */
+  color: #d1d1d1;
 }
 
 .feature-icon {
   margin-right: 10px;
-  color: #d1d1d1; /* Warna ikon fitur */
+  color: #d1d1d1;
   font-size: 20px;
 }
 
 .welcome-logo {
   max-width: 150px;
   height: auto;
-  margin-top: 30px;
+  margin-top: 115px;
   display: block;
   margin-left: auto;
   margin-right: auto;
-  filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5)); /* Efek glow putih untuk logo */
+  filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
+  position: relative; /* Memastikan logo di atas overlay */
 }
 
 /* Styles untuk halaman aplikasi (uas.php) */
 .container {
   max-width: 500px;
-  width: 100%; /* Lebar penuh, akan dibatasi oleh max-width */
-  margin: 20px auto; /* Margin atas/bawah 20px, auto untuk horizontal */
-  
-  background-image: url('../img/downloadbg.jpeg'); /* Background gambar untuk container */
+  width: 100%;
+  margin: 20px auto;
+  background-image: url('../img/downloadbg.jpeg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  
+  background-attachment: fixed; /* Membuat background tidak scroll */
   padding: 30px;
   border-radius: 16px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.08);
   position: relative;
+  color: #ecf0f1;
+  z-index: 1;
+}
 
-  color: #ecf0f1; /* Warna teks di container */
+/* Overlay untuk container */
+.container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 16px;
+  z-index: -1;
 }
 
 h2 {
@@ -122,6 +149,7 @@ h2 {
   margin-bottom: 25px;
   font-weight: 600;
   font-size: 24px;
+  position: relative; /* Memastikan teks di atas overlay */
 }
 
 .mode-selector {
@@ -130,22 +158,23 @@ h2 {
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  position: relative; /* Memastikan elemen di atas overlay */
 }
 
 .mode-option {
   flex: 1;
   padding: 12px;
   text-align: center;
-  background: #f1f3f5; /* Background mode option default */
-  color: #333333; /* Warna teks default mode option (gelap agar terbaca di background terang) */
+  background: #f1f3f5;
+  color: #333333;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s;
 }
 
 .mode-option.active {
-  background: linear-gradient(135deg, #708090, #5a6a7a); /* Gradient abu-abu aktif */
-  color: #ffffff; /* Teks putih untuk mode aktif */
+  background: linear-gradient(135deg, #708090, #5a6a7a);
+  color: #ffffff;
 }
 
 .section-title {
@@ -153,6 +182,7 @@ h2 {
   font-weight: 600;
   margin-bottom: 10px;
   font-size: 16px;
+  position: relative; /* Memastikan teks di atas overlay */
 }
 
 .text-box {
@@ -163,23 +193,26 @@ h2 {
   border: 1px solid #e9ecef;
   font-size: 15px;
   transition: all 0.3s;
-  background-color: #d1d1d1; /* Background text box */
-  color: #333333; /* Warna teks di text box (gelap agar terbaca di background terang) */
+  background-color: rgba(209, 209, 209, 0.9); /* Sedikit transparan */
+  color: #333333;
   min-height: 120px;
   resize: vertical;
+
+  position: relative; /* Memastikan textarea di atas overlay */
 }
 
 .text-box:focus {
   outline: none;
   border-color: #3498db;
   box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
-  background-color: white; /* Background text box saat fokus */
+  background-color: rgba(255, 255, 255, 0.95); /* Sedikit transparan */
 }
 
 .shift-control {
   display: flex;
   align-items: center;
   margin-bottom: 25px;
+  position: relative; /* Memastikan kontrol di atas overlay */
 }
 
 .shift-value {
@@ -187,7 +220,7 @@ h2 {
   text-align: center;
   font-size: 18px;
   font-weight: 600;
-  color: #ffffff; /* Warna teks nilai shift */
+  color: #ffffff;
 }
 
 .shift-button {
@@ -210,21 +243,10 @@ h2 {
   background: #bebebe;
 }
 
-.result-box {
-  width: 100%;
-  margin-bottom: 25px;
-  padding: 15px;
-  border-radius: 12px;
-  border: 1px solid #e9ecef;
-  font-size: 15px;
-  background-color: #d1d1d1; /* Background result box */
-  color: #333333; /* Warna teks di result box (gelap agar terbaca di background terang) */
-  min-height: 120px;
-}
-
 .button-group {
   display: flex;
   gap: 15px;
+  position: relative; /* Memastikan tombol di atas overlay */
 }
 
 .action-button {
@@ -240,15 +262,13 @@ h2 {
 }
 
 .process-btn {
-  background: linear-gradient(135deg, #5a6a7a, #708090); /* Gradient abu-abu proses */
+  background: linear-gradient(135deg, #5a6a7a, #708090);
   box-shadow: 0 4px 15px rgba(90, 106, 122, 0.2);
-  color: white;
 }
 
 .reset-btn {
-  background: linear-gradient(135deg, #708090, #8d9baa); /* Gradient abu-abu reset */
+  background: linear-gradient(135deg, #708090, #8d9baa);
   box-shadow: 0 4px 15px rgba(112, 128, 144, 0.2);
-  color: white;
 }
 
 .action-button:hover {
@@ -265,7 +285,7 @@ h2 {
   top: 20px;
   left: 20px;
   background: #303030;
-  color: #d1d1d1; /* Warna ikon kembali (disesuaikan agar terlihat di background gelap) */
+  color: #d1d1d1;
   border: none;
   border-radius: 50%;
   width: 50px;
@@ -278,11 +298,12 @@ h2 {
   font-size: 1.3rem;
   box-shadow: 0 1px 3px rgba(0,0,0,0.12);
   outline: none;
+  z-index: 2; /* Memastikan tombol di atas semua elemen */
 }
 
 .back-btn:hover {
   background: #5b5b5b;
-  color: #ffffff; /* Warna ikon kembali saat hover (lebih terang) */
+  color: #ffffff;
   box-shadow: 0 4px 8px rgba(0,0,0,0.15);
   transform: scale(1.05) rotate(-15deg);
 }
@@ -292,15 +313,6 @@ h2 {
   box-shadow: 0 1px 2px rgba(0,0,0,0.1);
 }
 
-/* Ikon akan berputar saat hover */
-.back-btn i {
-  transition: transform 0.3s ease;
-}
-
-.back-btn:hover i {
-  transform: rotate(-45deg);
-}
-
 .notification {
   padding: 15px;
   margin-bottom: 20px;
@@ -308,6 +320,7 @@ h2 {
   font-weight: 600;
   text-align: center;
   animation: fadeIn 0.5s;
+  position: relative; /* Memastikan notifikasi di atas overlay */
 }
 
 .success {
@@ -327,19 +340,57 @@ h2 {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Responsive adjustments */
+/* Responsive adjustments untuk mobile fullscreen */
 @media (max-width: 600px) {
-  .container {
-    padding: 20px;
+  body {
+    display: block;
+    min-height: 100vh;
+    height: auto;
+  }
+  
+  .welcome-container, .container {
+    width: 100%;
+    max-width: none;
+    min-height: 100vh;
+    border-radius: 0;
+    margin: 0;
+    padding: 30px 20px;
+    background-size: cover;
+    background-attachment: fixed;
   }
   
   .button-group {
     flex-direction: column;
   }
+  
+  .text-box {
+    min-height: 100px;
+  }
+  
+  .action-button, .start-btn {
+    padding: 12px;
+    font-size: 15px;
+  }
 }
 
-/* Kelas .logo sudah didefinisikan di atas, jadi ini dihapus untuk menghindari duplikasi */
-/* .logo {
-  width: 100px;
-  margin-bottom: 20px;
-} */
+/* Perbaikan untuk iOS */
+@supports (-webkit-touch-callout: none) {
+  .welcome-container, .container {
+    background-attachment: scroll;
+    -webkit-background-size: cover;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .welcome-container::before, .container::before {
+    position: fixed;
+  }
+}
